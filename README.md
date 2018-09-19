@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/mariatreesa/Lab4R.svg?branch=master)](https://travis-ci.org/mariatreesa/Lab4R)
