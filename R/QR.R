@@ -14,9 +14,9 @@ linreg1 <- function(formula, data) {
   X <- model.matrix(formula, data = data)
   # extract all the variable names from the formula
   vars <- all.vars(formula)
-  #if(is.numeric(data[vars[1]]) == FALSE){
-  #  stop("Dependent variable is not numeric")
-  #}
+  if(is.numeric(data[ ,vars[1]]) == FALSE){
+    stop("Dependent variable is not numeric")
+  }
   # get the first variables as independent
   Y <- as.matrix(data[, vars[1]])
   # use function qr to decompose X'X
