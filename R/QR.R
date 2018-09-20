@@ -31,8 +31,20 @@ linreg1 <- function(formula, data) {
   se_sq <- sum(res^2)/ (nrow(X) - QR$rank)
   #Using cholesky inversion
   beta_var <- chol2inv(QR$qr) * se_sq
-  beta_var
 
+  # create an object
+  summarySTATS <- list(
+    "Coefficients" = beta,
+    "Residuals" = res,
+    "Standard errors" = se_sq,
+    "Coefficient Variance" = beta_var,
+    match.call()
+  )
+
+  # assign a class to the object
+  class(summarySTATS) <- "linreg1"
+  # return object
+  summarySTATS
 }
 
 data("iris")
