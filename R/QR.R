@@ -5,11 +5,11 @@
 #' @param data as data frame
 #'
 #' @retrun an s3 object
-#' @export linreg1 as function
+#' @export linreg_QR as function
 #'
 
 
-linreg1 <- function(formula, data) {
+linreg_QR <- function(formula, data) {
   # get the independent variables into a n*p matrix
   X <- model.matrix(formula, data = data)
   # extract all the variable names from the formula
@@ -30,7 +30,7 @@ linreg1 <- function(formula, data) {
   # Standard errors of the residuals p is the rank of the QR matrix
   se_sq <- sum(res^2)/ (nrow(X) - QR$rank)
   #Using cholesky inversion
-  beta_var <- chol2inv(QR$qr) * se_sq
+  beta_var <-  diag(chol2inv(QR$qr) * se_sq)
 
   # create an object
   summarySTATS <- list(
@@ -42,10 +42,10 @@ linreg1 <- function(formula, data) {
   )
 
   # assign a class to the object
-  class(summarySTATS) <- "linreg1"
+  class(summarySTATS) <- "linreg_QR"
   # return object
   summarySTATS
 }
 
 data("iris")
-linreg1(formula = Petal.Length ~ Sepal.Length + Sepal.Width, data = iris)
+linreg_QR(formula = Petal.Length ~ Sepal.Length + Sepal.Width, data = iris)
