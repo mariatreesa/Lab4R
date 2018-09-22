@@ -1,14 +1,20 @@
 Package: RLab4
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Linear Regression Modelling
 Version: 0.1.0
-Author: Maria Treesa(marse306), Brian Masinde, Omkar
+Author: Maria Treesa(marse306), Brian Masinde(brima748), Omkar
 Maintainer: The package maintainer <mariatreesaa@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Linear regression modelling using two approaches; Ordinary Least Squares
+    and QR decomposition. The function linreg gives executes the former giving 
+    t-values and p-values in addition to the estimates of beta. The function linreg_QR
+    executes the latter of the approaches to get estimates of beta and Variance of beta.
 License: Apache License
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Imports: ggplot2 
+Suggests: testthat, 
+    knitr,
+    rmarkdown, 
 RoxygenNote: 6.1.0
 Depends: R (>= 2.10)
+VignetteBuilder: knitr
