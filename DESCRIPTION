@@ -5,7 +5,9 @@ Version: 0.1.0
 Author: Maria Treesa(marse306), Brian Masinde(brima748), Omkar
 Maintainer: The package maintainer <mariatreesaa@gmail.com>
 Description: Linear regression modelling using two approaches; Ordinary Least Squares
-  and QR decomposition.
+    and QR decomposition. The function linreg gives executes the former giving 
+    t-values and p-values in addition to the estimates of beta. The function linreg_QR
+    executes the latter of the approaches to get estimates of beta and Variance of beta.
 License: Apache License
 Encoding: UTF-8
 LazyData: true
