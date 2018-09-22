@@ -1,11 +1,11 @@
 Package: RLab4
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Linear Regression Modelling
 Version: 0.1.0
-Author: Maria Treesa(marse306), Brian Masinde, Omkar
+Author: Maria Treesa(marse306), Brian Masinde(brima748), Omkar
 Maintainer: The package maintainer <mariatreesaa@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Linear regression modelling using two approaches; Ordinary Least Squares
+  and QR decomposition.
 License: Apache License
 Encoding: UTF-8
 LazyData: true
