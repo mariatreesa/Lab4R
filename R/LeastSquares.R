@@ -1,16 +1,16 @@
 install.packages("ggplot2")
 library("ggplot2")
+library("gridExtra")
 
-
+# the linreg function
 
 linreg <- function(formula, data ){
   if(!(class(formula)=="formula")){
     stop("The first argument should be a formula object")
   }
-  X <- model.matrix(formula,data = data)
+  X <- model.matrix(formula,data )
   dvars <- all.vars(formula)[1]
   y <- as.matrix(data[,dvars])
-
 
   # regression coefficient calculated using :  inverse(traspose(X)* X) *  trasnpose(X)*y
   regressioncoeff <- solve(t(X)%*%X) %*% t(X)%*%y   # solve function do inverse , t(X) - transpose of X
@@ -19,6 +19,7 @@ linreg <- function(formula, data ){
 
   residuals <- y - fittedvalues   # calulating resuduals
   degreeoffreedom <- nrow(X) - ncol(X) # degree of freedom
+
 
 
   residualvariance <- (t(residuals) %*% residuals) * (1/degreeoffreedom) # residual varience
@@ -31,10 +32,10 @@ linreg <- function(formula, data ){
   # To calculate tvalues, we need to divide the regression coefficient matrix by the varience of regression
   # coefficient. So we took only the diaginal elements from varianceofregcoeff matrix as those are the variance
 
-  tvalues <- as.vector(regressioncoeff) / sqrt(diag((varianceofregcoeff))) # tvalues
+  tvalues <- regressioncoeff / sqrt(diag((varianceofregcoeff))) # tvalues
 
 
-  pvalues <- 2 * pt(abs(tvalues), degreeoffreedom)
+  pvalues <- 2 * pt(abs(tvalues), degreeoffreedom, lower.tail = FALSE)
 
   # creating object
   computedvalues <- list("Coefficients" = regressioncoeff, "FittedValues" = fittedvalues, "Residuals" = residuals,
@@ -63,33 +64,110 @@ print.linreg <- function(x,...) {
 }
 
 # plot function
-
-
 plot.linreg <- function(x,...){
 
-  ggplot(data=data.frame(x[["FittedValues"]], y=x[["Residuals"]]), aes(x=x[["FittedValues"]], y=x[["Residuals"]])) + geom_point(shape=1, size=5) +
-    geom_abline(mapping = aes(x=x[["FittedValues"]]), intercept = 0 ,slope = 3,data = NULL,na.rm = FALSE,
-                show.legend = NA)
+
+  plot_data <- data.frame(x[["Residuals"]],x[["FittedValues"]])
+  residual_values <- x[["Residuals"]]
+  fitted_values <- x[["FittedValues"]]
+  residualvariance <- x[["ResidualVarience"]]
+  formula <- x[["call"]][["formula"]]
+
+   plot1 <-  ggplot(data=plot_data,
+         aes(x= fitted_values, y = residual_values)) +
+   xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
+   ylab("Residuals") + geom_point(shape=1, size=5) + geom_smooth(method = "loess",
+                                              color = "red",
+                                              se = FALSE) +ggtitle("Residual vs Fitted")
+
+ plot2 <- p2 <- ggplot(data = plot_data,
+  aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
+   geom_point(shape =1, size=5) +
+   geom_smooth(method = "loess",
+               color = "red",
+               se = FALSE) +
+   ggtitle("Scale-Location") +
+   ylab(expression(sqrt(abs("Standardized Residuals")))) +
+   xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" ))
+
+ return(grid.arrange(Residual_vs_Fitted = plot1,
+             Scale_Location = plot2, ncol =2 ))
+
 }
 
 
+#resid function
 
-
-
+resid <- function (x, ...) {
+  UseMethod("resid", x)
+}
 resid.linreg <- function(x,...) {
   as.vector(x[["Residuals"]])
 
 }
 
-
+#pred function
+pred <- function (x, ...) {
+  UseMethod("pred", x)
+}
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
 }
 
+#coef function
+coef <- function(x, ...){
+  UseMethod("coef", x)
+}
+coef.linreg <- function(x = mod_object,...) {
+  v <- as.data.frame(x[["Coefficients"]])
+  cvec <- as.vector(x[["Coefficients"]])
+  names(cvec) <- rownames(v)
+  cvec
+}
+
+#Summary function
+summary <- function(x, ...){
+  UseMethod("summary", x)
+}
+
+# calculate coefficients
+summary.linreg <- function(x,...) {
+
+  # coefficients
+  coef_matrix <- data.frame(
+    estimate = round(x[["Coefficients"]], 2),
+    std.error = round(sqrt(diag(
+      x[["VarianceOfRegCoeff"]]
+    )), 2),
+    t_value = round(x[["tvalues"]], 2),
+    p_value = x[["pvalues"]]
+  )
+  colnames(coef_matrix) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
 
 
-mod_object<- linreg(Petal.Length~Species, data = iris)
-plot(mod_object)
+
+  # formula
+  formula = paste(x[["call"]])
+  cat(sep = "\n")
+  cat("Call:")
+  cat(sep = "\n")
+  cat(paste(formula[1], "( formula = ", formula[2], ", data = ", formula[3], ")", sep = "" ))
+  cat(sep = "\n")
+
+
+  #-----coeff matrix
+  cat(sep = "\n")
+  cat(sep = "\n")
+  cat("Coefficients:")
+  cat(sep = "\n")
+  print(coef_matrix)
+
+  #--- degree of freedon
+
+  cat(sep = "\n")
+  cat("Residual standard error:", round(sqrt(x[["ResidualVarience"]]), 2), "on", x[["DegreeofFreedon"]], "degrees of freedom")
+  cat(sep = "\n")
+}
 
 
 
