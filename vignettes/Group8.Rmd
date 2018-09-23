@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ### Introduction
-This package was developed as part of a LAB assignment at Link\"oping Universtiy. The package fits a Linear Regression Model using Ordinary Least Squares and QR decompostion method. So far, only former gives t-values and p-values while the latter gives estimates of beta and residuals and variances of the beta estimates. The functions:
+This package was developed as part of a LAB assignment at Linkoping Universtiy. The package fits a Linear Regression Model using Ordinary Least Squares and QR decompostion method. So far, only former gives t-values and p-values while the latter gives estimates of beta and residuals and variances of the beta estimates. The functions:
 - linreg: Linear Regression function by OLS
 - linreg_QR: Linear Regression function by QR decomposition. 
 
