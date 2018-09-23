@@ -11,7 +11,6 @@
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 #'
 #'
-install.packages("ggplot2")
 library("ggplot2")
 library("gridExtra")
 
