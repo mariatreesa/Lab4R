@@ -13,15 +13,6 @@ This package was developed as part of a LAB assignment at Linkoping Universtiy. 
 - linreg: Linear Regression function by OLS
 - linreg_QR: Linear Regression function by QR decomposition. 
 
-### Formula:
-
-```{r formula1, eval = FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-linreg(formula, data)
-```
-
-```{r formula2, eval = FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-linreg_QR(formula, data)
-```
 
 
 ### Implementation Examples:
