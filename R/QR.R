@@ -33,18 +33,16 @@ linreg_QR <- function(formula, data) {
   beta_var <-  diag(chol2inv(QR$qr) * se_sq)
 
   # create an object
-  summarySTATS <- list(
+  estimates <- list(
     "Coefficients" = beta,
-    "Residuals" = res,
-    "Standard errors" = se_sq,
     "Coefficient Variance" = beta_var,
     match.call()
   )
 
   # assign a class to the object
-  class(summarySTATS) <- "linreg_QR"
+  class(estimates) <- "linreg_QR"
   # return object
-  summarySTATS
+  estimates
 }
 
 data("iris")
