@@ -101,31 +101,27 @@ plot.linreg <- function(x,...){
   residualvariance <- x[["ResidualVarience"]]
   formula <- x[["call"]][["formula"]]
 
-   plot1 <-  ggplot(data=plot_data,
+   p1 <-  ggplot(data=plot_data,
          aes(x= fitted_values, y = residual_values)) +
    xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
-   ylab("Residuals") + geom_point(shape=1, size=5) + geom_smooth(method = "loess",
-                                              color = "red",
-                                              se = FALSE) +ggtitle("Residuals vs Fitted")
+   ylab("Residuals") + geom_point(shape=1, size=5) +ggtitle("Residuals vs Fitted")
 
- plot2 <- p2 <- ggplot(data = plot_data,
+   plot1 <- p1+ stat_summary(fun.y = median, color = "red", geom = "line")
+
+  p2 <- p2 <- ggplot(data = plot_data,
   aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
    geom_point(shape =1, size=5) +
-   geom_smooth(method = "loess",
-               color = "red",
-               se = FALSE) +
    ggtitle("Scale-Location") +
    ylab(expression(sqrt(abs("Standardized Residuals")))) +
    xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" ))
+
+  plot2 <- p2+ stat_summary(fun.y = mean, color = "red", geom = "line")
+
 
  return(grid.arrange(Residual_vs_Fitted = plot1,
              Scale_Location = plot2, ncol =2 ))
 
 }
-
-
-
-
 
 resid <- function (x, ...) {
   UseMethod("resid", x)
@@ -238,7 +234,6 @@ summary.linreg <- function(x,...) {
   cat("Residual standard error:", round(sqrt(x[["ResidualVarience"]]), 2), "on", x[["DegreeofFreedon"]], "degrees of freedom")
   cat(sep = "\n")
 }
-
 
 
 
