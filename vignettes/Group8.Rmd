@@ -34,7 +34,7 @@ model_obj <- linreg(eruptions ~ waiting, data= faithful)
 print(model_obj)
 ```
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r sum, message=FALSE, warning=FALSE, paged.print=FALSE}
 summary(model_obj)
 ```
 
