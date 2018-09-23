@@ -1,9 +1,9 @@
 #'LIU Theme
 #'@importFrom ggplot2 theme theme_bw element_rect element_line element_blank element_text margin
+#'@importFRom grid unit
 #'
 #'return a theme for ggplot2 outputs
 #'@export
-
 
 theme_linko<-function(){
   ggplot2::theme_bw()+
@@ -15,8 +15,8 @@ theme_linko<-function(){
                    text=ggplot2::element_text(color="#54d8e0"),
                    axis.text = ggplot2::element_text(color="#54d8e0"),
                    axis.ticks = ggplot2::element_line(color="#54d8e0"),
-                   axis.line.x.bottom = element_line(color="#54d8e0",grid::arrow=(length =grid::unit(0.1) )
+                   axis.line.x.bottom = element_line(color="#54d8e0",grid::arrow=(length =grid::unit(0.1,"cm")),
                     axis.line.y.left = element_line(color="#54d8e0")
-                     )
+                  )
   
 }
