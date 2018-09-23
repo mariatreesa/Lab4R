@@ -41,7 +41,13 @@ summary(model_obj)
 ```{r imp2, eval=FALSE}
 data(iris)
 
-linreg_QR(Petal.Length ~ Species, data = iris)
+model2<-linreg_QR(Petal.Length ~ Species, data = iris)
+
+print(model2)
+```
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+summary(model2)
 ```
 
 ## Styles
