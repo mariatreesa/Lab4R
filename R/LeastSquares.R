@@ -4,7 +4,7 @@
 #' @param formula as formula
 #' @param data as dataframe
 #'
-#' @return An object of class linreg with all the regression variables.
+#' @return computedvalues  an object of type s3 class.
 #'
 #' @export linreg as function
 #'
@@ -180,10 +180,6 @@ coef.linreg <- function(x = mod_object,...) {
   cvec
 }
 
-#Summary function
-summary <- function(x, ...){
-  UseMethod("summary", x)
-}
 
 # calculate coefficients
 

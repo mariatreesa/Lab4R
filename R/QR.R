@@ -4,7 +4,7 @@
 #' @param formula as formula
 #' @param data as data frame
 #'
-#' @retrun summarySTATS as S3 object
+#' @retrun estimates as S3 object
 #' @export linreg_QR as function
 #'
 
