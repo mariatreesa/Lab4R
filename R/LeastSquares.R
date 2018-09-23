@@ -194,7 +194,6 @@ coef.linreg <- function(x = mod_object,...) {
 #'
 summary.linreg <- function(x,...) {
 
-  # coefficients
   coef_matrix <- data.frame(
     estimate = round(x[["Coefficients"]], 2),
     std.error = round(sqrt(diag(
