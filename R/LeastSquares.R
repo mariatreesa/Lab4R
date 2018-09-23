@@ -68,6 +68,8 @@ linreg <- function(formula, data ){
 #'
 #' @export print.linreg as function
 #'
+#' @return Nothing
+#'
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 print.linreg <- function(x,...) {
