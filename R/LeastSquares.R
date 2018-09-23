@@ -1,3 +1,16 @@
+#' Implementation of Liner Regression function linreg, an alternative for lm model.
+#' Authors: Maria Treesa Sebastian(marse306), Brian Masinde(brima748), Omkar(omkbh878)
+#'
+#' @param formula as formula
+#' @param data as dataframe
+#'
+#' @return An object of class linreg with all the regression variables.
+#'
+#' @export linreg as function
+#'
+#' @examples linreg(formula = Petal.Length ~ Species, data = iris)
+#'
+#'
 install.packages("ggplot2")
 library("ggplot2")
 library("gridExtra")
@@ -51,7 +64,14 @@ linreg <- function(formula, data ){
 
 
 
-# print function
+#' @param x as object of linreg
+#'
+#' @export print.linreg as function
+#'
+#' @return Nothing
+#'
+#' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 print.linreg <- function(x,...) {
 
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
@@ -64,6 +84,14 @@ print.linreg <- function(x,...) {
 }
 
 # plot function
+#' @param x as object of linreg
+#'
+#' @export plot.linreg as function
+#'
+#' @return Two plots  Residual vs Fitted   and  Scale-Location
+#'
+#' @examples plot(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 plot.linreg <- function(x,...){
 
 
@@ -78,7 +106,7 @@ plot.linreg <- function(x,...){
    xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
    ylab("Residuals") + geom_point(shape=1, size=5) + geom_smooth(method = "loess",
                                               color = "red",
-                                              se = FALSE) +ggtitle("Residual vs Fitted")
+                                              se = FALSE) +ggtitle("Residuals vs Fitted")
 
  plot2 <- p2 <- ggplot(data = plot_data,
   aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
@@ -96,11 +124,23 @@ plot.linreg <- function(x,...){
 }
 
 
-#resid function
+
+
 
 resid <- function (x, ...) {
   UseMethod("resid", x)
 }
+
+
+# Resid function
+#' @param x as object of linreg
+#'
+#' @export resid.linreg as function
+#'
+#' @return Vector of residuals
+#'
+#' @examples resid(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 resid.linreg <- function(x,...) {
   as.vector(x[["Residuals"]])
 
@@ -110,14 +150,34 @@ resid.linreg <- function(x,...) {
 pred <- function (x, ...) {
   UseMethod("pred", x)
 }
+
+# pred function
+#' @param x as object of linreg
+#'
+#' @export pred.linreg as function
+#'
+#' @return Vector of Fitted values
+#'
+#' @examples pred(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
 }
 
-#coef function
+
 coef <- function(x, ...){
   UseMethod("coef", x)
 }
+
+# coef function
+#' @param x as object of linreg
+#'
+#' @export coef.linreg as function
+#'
+#' @return Named Vector of Coefficients
+#'
+#' @examples coef(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 coef.linreg <- function(x = mod_object,...) {
   v <- as.data.frame(x[["Coefficients"]])
   cvec <- as.vector(x[["Coefficients"]])
@@ -131,6 +191,16 @@ summary <- function(x, ...){
 }
 
 # calculate coefficients
+
+# summary function
+#' @param x as object of linreg
+#'
+#' @export summary.linreg as function
+#'
+#' @return summary of linreg with formula data, coefficient matrix and residual standard error
+#'
+#' @examples summary(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 summary.linreg <- function(x,...) {
 
   # coefficients
