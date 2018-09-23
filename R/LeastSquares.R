@@ -108,7 +108,7 @@ plot.linreg <- function(x,...){
 
    plot1 <- p1+ stat_summary(fun.y = median, color = "red", geom = "line")
 
-  p2 <- p2 <- ggplot(data = plot_data,
+  p2 <- ggplot(data = plot_data,
   aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
    geom_point(shape =1, size=5) +
    ggtitle("Scale-Location") +
