@@ -4,13 +4,16 @@
 \alias{linreg}
 \title{Implementation of Liner Regression function linreg, an alternative for lm model.
 Authors: Maria Treesa Sebastian(marse306), Brian Masinde(brima748), Omkar(omkbh878)}
+\usage{
+linreg(formula, data)
+}
 \arguments{
-\item{formula}{as formula}
+\item{formula}{as formula object}
 
 \item{data}{as dataframe}
 }
 \value{
-computedvalues  an object of type s3 class.
+computedvalues  an object linreg as an s3 class.
 }
 \description{
 Implementation of Liner Regression function linreg, an alternative for lm model.

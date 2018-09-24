@@ -12,7 +12,7 @@
 \item{...}{optional parameter}
 }
 \value{
-summary of linreg with formula data, coefficient matrix and residual standard error
+summary of linreg with formula, data, coefficient matrix and residual standard error
 }
 \description{
 Implementation of summary function using linreg , an alternative for lm.summary.

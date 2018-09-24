@@ -12,7 +12,7 @@
 \item{...}{optional parameter}
 }
 \value{
-Two plots  Residual vs Fitted   and  Scale-Location
+Two plots  Residual vs Fitted  and  Scale-Location
 }
 \description{
 Implementation of plot function using linreg , an alternative for lm.plot.

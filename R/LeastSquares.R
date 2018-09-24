@@ -2,17 +2,15 @@
 #' Authors: Maria Treesa Sebastian(marse306), Brian Masinde(brima748), Omkar(omkbh878)
 #'
 #' @name linreg
-#' @param formula as formula
+#' @param formula as formula object
 #' @param data as dataframe
 #'
-#' @return computedvalues  an object of type s3 class.
+#' @return computedvalues  an object linreg as an s3 class.
 #'
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 #'
 
-library("ggplot2")
-library("gridExtra")
 
 # the linreg function
 
@@ -84,14 +82,14 @@ print.linreg <- function(x,...) {
 
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
-  regco <- t(x[["Coefficients"]])
+  regcoeff <- t(x[["Coefficients"]])
     cat("Coefficients:\n")
-    print(format(regco[1,]), quote = FALSE)
+    print(format(regcoeff[1,]), quote = FALSE)
   cat("\n")
 
 }
 
-plot <- function (x, ...) {
+plot <- function (x,...) {
   UseMethod("plot", x)
 }
 
@@ -103,15 +101,13 @@ plot <- function (x, ...) {
 #'
 #' @param ...  optional parameter
 #'
-#' @return Two plots  Residual vs Fitted   and  Scale-Location
-#'
+#' @return Two plots  Residual vs Fitted  and  Scale-Location
 #'
 plot.linreg <- function(x,...){
 
-
-  plot_data <- data.frame(x[["Residuals"]],x[["FittedValues"]])
   residual_values <- x[["Residuals"]]
   fitted_values <- x[["FittedValues"]]
+  plot_data <- data.frame(residual_values,fitted_values)
   residualvariance <- x[["ResidualVarience"]]
   formula <- x[["call"]][["formula"]]
 
@@ -139,7 +135,7 @@ plot.linreg <- function(x,...){
 
 
 
-resid <- function (x, ...) {
+resid <- function (x,...) {
   UseMethod("resid", x)
 }
 
@@ -171,7 +167,6 @@ pred <- function (x, ...) {
 #'
 #' @param ...  optional parameter
 #'
-#'
 #' @return Vector of Fitted values
 #'
 #'
@@ -195,7 +190,6 @@ coef <- function(x, ...){
 #' @return Named Vector of Coefficients
 #'
 #'
-#'
 coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
   cvec <- as.vector(x[["Coefficients"]])
@@ -214,7 +208,7 @@ summary <- function(x, ...){
 #'
 #' @param ...  optional parameter
 #'
-#' @return summary of linreg with formula data, coefficient matrix and residual standard error
+#' @return summary of linreg with formula, data, coefficient matrix and residual standard error
 #'
 #'
 summary.linreg <- function(x,...) {
@@ -254,6 +248,11 @@ summary.linreg <- function(x,...) {
   cat("Residual standard error:", round(sqrt(x[["ResidualVarience"]]), 2), "on", x[["DegreeofFreedon"]], "degrees of freedom")
   cat(sep = "\n")
 
+  #---- significant codes
+
+  cat(sep = "\n")
+  cat("Signif . codes ", attributes(x$signi)$"legend")
+  cat(sep = "\n")
 }
 
 
