@@ -9,6 +9,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ### Introduction
+
+```{r}
+library(RLab4)
+library(ggplot2)
+library(gridExtra)
+```
+
 This package was developed as part of a LAB assignment at Linkoping Universtiy. The package fits a Linear Regression Model using Ordinary Least Squares and QR decompostion method. So far, only former gives t-values and p-values while the latter gives estimates of beta and residuals and variances of the beta estimates. The functions:
 - linreg: Linear Regression function by OLS
 - linreg_QR: Linear Regression function by QR decomposition. 
@@ -29,17 +36,8 @@ print(model_obj)
 summary(model_obj)
 ```
 
-```{r imp2, eval=FALSE}
-data(iris)
 
-model2<-linreg_QR(Petal.Length ~ Species, data = iris)
 
-print(model2)
-```
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-summary(model2)
-```
 
 ## Styles
 
