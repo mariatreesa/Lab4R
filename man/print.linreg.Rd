@@ -17,7 +17,3 @@ Nothing
 \description{
 Implementation of Print function using linreg , an alternative for lm.print.
 }
-\examples{
-print(linreg(formula = Petal.Length ~ Species, data = iris))
-
-}

@@ -17,7 +17,3 @@ summary of linreg with formula data, coefficient matrix and residual standard er
 \description{
 Implementation of summary function using linreg , an alternative for lm.summary.
 }
-\examples{
-summary(linreg(formula = Petal.Length ~ Species, data = iris))
-
-}

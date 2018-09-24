@@ -17,7 +17,3 @@ Vector of Fitted values
 \description{
 Implementation of pred function using linreg , an alternative for lm.pred.
 }
-\examples{
-pred(linreg(formula = Petal.Length ~ Species, data = iris))
-
-}

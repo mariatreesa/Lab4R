@@ -4,7 +4,7 @@
 \alias{coef.linreg}
 \title{Implementation of coef function using linreg , an alternative for lm.coef.}
 \usage{
-\method{coef}{linreg}(x = mod_object, ...)
+\method{coef}{linreg}(x, ...)
 }
 \arguments{
 \item{x}{object of linreg}
@@ -16,8 +16,4 @@ Named Vector of Coefficients
 }
 \description{
 Implementation of coef function using linreg , an alternative for lm.coef.
-}
-\examples{
-coef(linreg(formula = Petal.Length ~ Species, data = iris))
-
 }

@@ -1,4 +1,4 @@
-Package: RLab4
+Package: Rlab4
 Type: Package
 Title: Linear Regression Modelling
 Version: 0.1.0
@@ -14,7 +14,7 @@ LazyData: true
 Imports: ggplot2,gridExtra
 Suggests: testthat, 
     knitr,
-    rmarkdown, ggplot2
+    rmarkdown
 RoxygenNote: 6.1.0
 Depends: R (>= 2.10)
 VignetteBuilder: knitr

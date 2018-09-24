@@ -10,7 +10,6 @@
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 #'
-#'
 
 library("ggplot2")
 library("gridExtra")
@@ -80,7 +79,6 @@ print <- function (x, ...) {
 #'
 #' @return Nothing
 #'
-#' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 print.linreg <- function(x,...) {
 
@@ -107,7 +105,6 @@ plot <- function (x, ...) {
 #'
 #' @return Two plots  Residual vs Fitted   and  Scale-Location
 #'
-#' @examples plot(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 plot.linreg <- function(x,...){
 
@@ -155,7 +152,6 @@ resid <- function (x, ...) {
 #'
 #' @return Vector of residuals
 #'
-#' @examples resid(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 resid.linreg <- function(x,...) {
   as.vector(x[["Residuals"]])
@@ -178,7 +174,6 @@ pred <- function (x, ...) {
 #'
 #' @return Vector of Fitted values
 #'
-#' @examples pred(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
@@ -199,7 +194,7 @@ coef <- function(x, ...){
 #'
 #' @return Named Vector of Coefficients
 #'
-#' @examples coef(linreg(formula = Petal.Length ~ Species, data = iris))
+#'
 #'
 coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
@@ -221,7 +216,6 @@ summary <- function(x, ...){
 #'
 #' @return summary of linreg with formula data, coefficient matrix and residual standard error
 #'
-#' @examples summary(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
 summary.linreg <- function(x,...) {
 

@@ -17,7 +17,3 @@ Vector of residuals
 \description{
 Implementation of resid function using linreg , an alternative for lm.resid.
 }
-\examples{
-resid(linreg(formula = Petal.Length ~ Species, data = iris))
-
-}

@@ -1,4 +1,3 @@
 library(testthat)
-library(Lab4R)
-
-test_check("Lab4R")
+library(Rlab4)
+test_check("Rlab4")

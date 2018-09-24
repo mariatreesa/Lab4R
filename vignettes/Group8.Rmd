@@ -11,7 +11,7 @@ vignette: >
 ### Introduction
 
 ```{r}
-library(RLab4)
+library(Rlab4)
 library(ggplot2)
 library(gridExtra)
 ```
