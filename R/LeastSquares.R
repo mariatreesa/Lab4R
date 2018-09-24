@@ -7,8 +7,7 @@
 #'
 #' @return computedvalues  an object of type s3 class.
 #'
-#' @export linreg as function
-#'
+#' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 #'
 #'
@@ -71,9 +70,12 @@ linreg <- function(formula, data ){
 
 #' Implementation of Print function using linreg , an alternative for lm.print.
 #' @name print.linreg
+#'
 #' @param x as object of linreg
 #'
-#' @export print.linreg as function
+#' @param ...  optional parameter
+#'
+#' @export print.linreg
 #'
 #' @return Nothing
 #'
@@ -96,7 +98,9 @@ print.linreg <- function(x,...) {
 #'
 #' @param x as object of linreg
 #'
-#' @export plot.linreg as function
+#' @param ...  optional parameter
+#'
+#' @export plot.linreg
 #'
 #' @return Two plots  Residual vs Fitted   and  Scale-Location
 #'
@@ -116,7 +120,7 @@ plot.linreg <- function(x,...){
    xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
    ylab("Residuals") + geom_point(shape=1, size=5) +ggtitle("Residuals vs Fitted")
 
-   plot1 <- p1+ stat_summary(fun.y = median, color = "red", geom = "line")
+   plot1 <- p1+ stat_summary(fun.y = median, color = "red", geom = "line", size=1)
 
   p2 <- ggplot(data = plot_data,
   aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
@@ -125,7 +129,7 @@ plot.linreg <- function(x,...){
    ylab(expression(sqrt(abs("Standardized Residuals")))) +
    xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" ))
 
-  plot2 <- p2+ stat_summary(fun.y = mean, color = "red", geom = "line")
+  plot2 <- p2+ stat_summary(fun.y = mean, color = "red", geom = "line", size=1)
 
 
  return(grid.arrange(Residual_vs_Fitted = plot1,
@@ -144,8 +148,9 @@ resid <- function (x, ...) {
 #' @name resid.linreg
 #'
 #' @param x as object of linreg
+#' @param ...  optional parameter
 #'
-#' @export resid.linreg as function
+#' @export resid.linreg
 #'
 #' @return Vector of residuals
 #'
@@ -167,7 +172,9 @@ pred <- function (x, ...) {
 #'
 #' @param x as object of linreg
 #'
-#' @export pred.linreg as function
+#' @param ...  optional parameter
+#'
+#' @export pred.linreg
 #'
 #' @return Vector of Fitted values
 #'
@@ -186,9 +193,10 @@ coef <- function(x, ...){
 #'
 #' @name coef.linreg
 #'
-#' @param x as object of linreg
+#' @param x  object of linreg
+#' @param ...  optional parameter
 #'
-#' @export coef.linreg as function
+#' @export coef.linreg
 #'
 #' @return Named Vector of Coefficients
 #'
@@ -208,7 +216,9 @@ coef.linreg <- function(x = mod_object,...) {
 #'
 #' @param x as object of linreg
 #'
-#' @export summary.linreg as function
+#' @param ...  optional parameter
+#'
+#' @export summary.linreg
 #'
 #' @return summary of linreg with formula data, coefficient matrix and residual standard error
 #'

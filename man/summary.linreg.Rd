@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{as object of linreg}
+
+\item{...}{optional parameter}
 }
 \value{
 summary of linreg with formula data, coefficient matrix and residual standard error

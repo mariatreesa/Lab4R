@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{as object of linreg}
+
+\item{...}{optional parameter}
 }
 \value{
 Vector of residuals

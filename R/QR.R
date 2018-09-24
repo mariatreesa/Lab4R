@@ -5,7 +5,7 @@
 #' @param data as data frame
 #'
 #' @return estimates as S3 object
-#' @export linreg_QR as function
+#' @export linreg_QR
 #'
 
 

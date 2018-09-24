@@ -7,7 +7,9 @@
 \method{coef}{linreg}(x = mod_object, ...)
 }
 \arguments{
-\item{x}{as object of linreg}
+\item{x}{object of linreg}
+
+\item{...}{optional parameter}
 }
 \value{
 Named Vector of Coefficients

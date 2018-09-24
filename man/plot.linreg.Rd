@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{as object of linreg}
+
+\item{...}{optional parameter}
 }
 \value{
 Two plots  Residual vs Fitted   and  Scale-Location
