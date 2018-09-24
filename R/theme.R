@@ -15,8 +15,8 @@ theme_linko<-function(){
                    text=ggplot2::element_text(color="#54d8e0"),
                    axis.text = ggplot2::element_text(color="#54d8e0"),
                    axis.ticks = ggplot2::element_line(color="#54d8e0"),
-                   axis.line.x.bottom = element_line(color="#54d8e0",grid::arrow=(length =grid::unit(0.1,"cm")),
-                    axis.line.y.left = element_line(color="#54d8e0",grid::arrow=(length =grid::unit(0.1,"cm"))
+                   axis.line.x.bottom = element_line(color="#54d8e0",grid::arrow(length =grid::unit(0.1,"cm"))),
+                    axis.line.y.left = element_line(color="#54d8e0",grid::arrow(length =grid::unit(0.1,"cm")))
                   )
 
 }
