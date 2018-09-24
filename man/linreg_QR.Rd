@@ -12,6 +12,9 @@ linreg_QR(formula, data)
 
 \item{data}{as data frame}
 }
+\value{
+estimates as S3 object
+}
 \description{
 Function to fit linear model by way of QR decomposition
 Authors: Brian Masinde (brima748), Maria Treesa Sebastian (marse306), Omkar(omkbh878)

@@ -1,6 +1,7 @@
 #' Implementation of Liner Regression function linreg, an alternative for lm model.
 #' Authors: Maria Treesa Sebastian(marse306), Brian Masinde(brima748), Omkar(omkbh878)
 #'
+#' @name linreg
 #' @param formula as formula
 #' @param data as dataframe
 #'
@@ -49,10 +50,16 @@ linreg <- function(formula, data ){
 
   pvalues <- 2 * pt(abs(tvalues), degreeoffreedom, lower.tail = FALSE)
 
+  # calculate significant codes for p values
+  signi <- symnum(pvalues, corr = FALSE, na = FALSE,
+                   cutpoints = c(0,0.001, 0.01, 0.05, 0.1, 1),
+                   symbols = c("***", "**", "*", ".", " "))
+
+
   # creating object
   computedvalues <- list("Coefficients" = regressioncoeff, "FittedValues" = fittedvalues, "Residuals" = residuals,
                          "DegreeofFreedon" = degreeoffreedom, "ResidualVarience" = residualvariance,
-                         "VarianceOfRegCoeff" = varianceofregcoeff, "tvalues" = tvalues, "pvalues" = pvalues, "call" = match.call())
+                         "VarianceOfRegCoeff" = varianceofregcoeff, "tvalues" = tvalues, "pvalues" = pvalues,"signi" = signi, "call" = match.call())
 
   # assigning class to linreg - s3 class
   class(computedvalues) <- "linreg"
@@ -62,7 +69,8 @@ linreg <- function(formula, data ){
 }
 
 
-
+#' Implementation of Print function using linreg , an alternative for lm.print.
+#' @name print.linreg
 #' @param x as object of linreg
 #'
 #' @export print.linreg as function
@@ -82,7 +90,10 @@ print.linreg <- function(x,...) {
 
 }
 
-# plot function
+#' Implementation of plot function using linreg , an alternative for lm.plot.
+#'
+#' @name plot.linreg
+#'
 #' @param x as object of linreg
 #'
 #' @export plot.linreg as function
@@ -127,7 +138,11 @@ resid <- function (x, ...) {
 }
 
 
-# Resid function
+
+#' Implementation of resid function using linreg , an alternative for lm.resid.
+#'
+#' @name resid.linreg
+#'
 #' @param x as object of linreg
 #'
 #' @export resid.linreg as function
@@ -146,7 +161,10 @@ pred <- function (x, ...) {
   UseMethod("pred", x)
 }
 
-# pred function
+#' Implementation of pred function using linreg , an alternative for lm.pred.
+#'
+#' @name pred.linreg
+#'
 #' @param x as object of linreg
 #'
 #' @export pred.linreg as function
@@ -164,7 +182,10 @@ coef <- function(x, ...){
   UseMethod("coef", x)
 }
 
-# coef function
+#' Implementation of coef function using linreg , an alternative for lm.coef.
+#'
+#' @name coef.linreg
+#'
 #' @param x as object of linreg
 #'
 #' @export coef.linreg as function
@@ -181,9 +202,10 @@ coef.linreg <- function(x = mod_object,...) {
 }
 
 
-# calculate coefficients
-
-# summary function
+#' Implementation of summary function using linreg , an alternative for lm.summary.
+#'
+#' @name summary.linreg
+#'
 #' @param x as object of linreg
 #'
 #' @export summary.linreg as function
@@ -200,9 +222,10 @@ summary.linreg <- function(x,...) {
       x[["VarianceOfRegCoeff"]]
     )), 2),
     t_value = round(x[["tvalues"]], 2),
-    p_value = x[["pvalues"]]
+    p_value = x[["pvalues"]],
+    signi <- as.vector(x[["signi"]])
   )
-  colnames(coef_matrix) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
+  colnames(coef_matrix) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)","")
 
 
 
@@ -227,6 +250,7 @@ summary.linreg <- function(x,...) {
   cat(sep = "\n")
   cat("Residual standard error:", round(sqrt(x[["ResidualVarience"]]), 2), "on", x[["DegreeofFreedon"]], "degrees of freedom")
   cat(sep = "\n")
+
 }
 
 

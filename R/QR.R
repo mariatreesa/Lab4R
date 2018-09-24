@@ -4,7 +4,7 @@
 #' @param formula as formula
 #' @param data as data frame
 #'
-#' @retrun estimates as S3 object
+#' @return estimates as S3 object
 #' @export linreg_QR as function
 #'
 
@@ -43,7 +43,8 @@ linreg_QR <- function(formula, data) {
   class(estimates) <- "linreg_QR"
   # return object
   estimates
+
 }
 
-data("iris")
-linreg_QR(formula = Petal.Length ~ Sepal.Length + Sepal.Width, data = iris)
+
+
