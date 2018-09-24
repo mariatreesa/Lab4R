@@ -11,6 +11,7 @@
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 #'
 #'
+
 library("ggplot2")
 library("gridExtra")
 
@@ -67,15 +68,15 @@ linreg <- function(formula, data ){
 
 }
 
-
+print <- function (x, ...) {
+  UseMethod("print", x)
+}
 #' Implementation of Print function using linreg , an alternative for lm.print.
 #' @name print.linreg
 #'
 #' @param x as object of linreg
 #'
 #' @param ...  optional parameter
-#'
-#' @export print.linreg
 #'
 #' @return Nothing
 #'
@@ -92,6 +93,10 @@ print.linreg <- function(x,...) {
 
 }
 
+plot <- function (x, ...) {
+  UseMethod("plot", x)
+}
+
 #' Implementation of plot function using linreg , an alternative for lm.plot.
 #'
 #' @name plot.linreg
@@ -99,8 +104,6 @@ print.linreg <- function(x,...) {
 #' @param x as object of linreg
 #'
 #' @param ...  optional parameter
-#'
-#' @export plot.linreg
 #'
 #' @return Two plots  Residual vs Fitted   and  Scale-Location
 #'
@@ -137,11 +140,11 @@ plot.linreg <- function(x,...){
 
 }
 
+
+
 resid <- function (x, ...) {
   UseMethod("resid", x)
 }
-
-
 
 #' Implementation of resid function using linreg , an alternative for lm.resid.
 #'
@@ -149,8 +152,6 @@ resid <- function (x, ...) {
 #'
 #' @param x as object of linreg
 #' @param ...  optional parameter
-#'
-#' @export resid.linreg
 #'
 #' @return Vector of residuals
 #'
@@ -174,7 +175,6 @@ pred <- function (x, ...) {
 #'
 #' @param ...  optional parameter
 #'
-#' @export pred.linreg
 #'
 #' @return Vector of Fitted values
 #'
@@ -186,7 +186,7 @@ pred.linreg <- function(x,...) {
 
 
 coef <- function(x, ...){
-  UseMethod("coef", x)
+    UseMethod("coef", x)
 }
 
 #' Implementation of coef function using linreg , an alternative for lm.coef.
@@ -196,20 +196,21 @@ coef <- function(x, ...){
 #' @param x  object of linreg
 #' @param ...  optional parameter
 #'
-#' @export coef.linreg
 #'
 #' @return Named Vector of Coefficients
 #'
 #' @examples coef(linreg(formula = Petal.Length ~ Species, data = iris))
 #'
-coef.linreg <- function(x = mod_object,...) {
+coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
   cvec <- as.vector(x[["Coefficients"]])
   names(cvec) <- rownames(v)
   cvec
 }
 
-
+summary <- function(x, ...){
+  UseMethod("summary", x)
+}
 #' Implementation of summary function using linreg , an alternative for lm.summary.
 #'
 #' @name summary.linreg
@@ -217,8 +218,6 @@ coef.linreg <- function(x = mod_object,...) {
 #' @param x as object of linreg
 #'
 #' @param ...  optional parameter
-#'
-#' @export summary.linreg
 #'
 #' @return summary of linreg with formula data, coefficient matrix and residual standard error
 #'
