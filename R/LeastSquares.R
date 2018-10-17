@@ -74,6 +74,7 @@ linreg <- function(formula, data ){
 #'
 #' @return Nothing
 #'
+#' @export print.linreg
 #'
 print.linreg <- function(x,...) {
 
@@ -99,6 +100,8 @@ plot <- function (x,...) {
 #' @param ...  optional parameter
 #'
 #' @return Prints the two plots to replicate plot.lm
+#'
+#' @export plot.linreg
 #'
 plot.linreg <- function(x,...){
   op <- par(ask=TRUE)
@@ -150,6 +153,7 @@ resid <- function (x,...) {
 #' @param ...  optional parameter
 #'
 #' @return Vector of residuals
+#' @export resid.linreg
 #'
 #'
 resid.linreg <- function(x,...) {
@@ -172,7 +176,7 @@ pred <- function (x, ...) {
 #'
 #' @return Vector of Fitted values
 #'
-#'
+#' @export pred.linreg
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
 }
@@ -192,7 +196,7 @@ coef <- function(x, ...){
 #'
 #' @return Named Vector of Coefficients
 #'
-#'
+#' @export coef.linreg
 coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
   cvec <- as.vector(x[["Coefficients"]])
@@ -211,7 +215,7 @@ coef.linreg <- function(x,...) {
 #'
 #' @return summary of linreg with formula, data, coefficient matrix and residual standard error
 #'
-#'
+#' @export summary.linreg
 summary.linreg <- function(x,...) {
 
   coef_matrix <- data.frame(
