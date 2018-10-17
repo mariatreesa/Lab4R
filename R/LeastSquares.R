@@ -74,7 +74,7 @@ linreg <- function(formula, data ){
 #' @param ...  optional parameter
 #'
 #' @return Nothing
-#'
+#' @export
 #'
 print.linreg <- function(x,...) {
 
@@ -87,6 +87,17 @@ print.linreg <- function(x,...) {
 
 }
 
+#' Generic plot function
+#'
+#' @name plot
+#'
+#' @param x as s3 object
+#'
+#' @param ...  optional parameter
+#'
+#' @return nothing
+#' @export
+#'
 plot <- function (x,...) {
   UseMethod("plot", x)
 }
@@ -100,6 +111,7 @@ plot <- function (x,...) {
 #'
 #' @return Prints the two plots to replicate plot.lm
 #'
+#'@export
 #'
 plot.linreg <- function(x,...){
   op <- par(ask=TRUE)
@@ -153,12 +165,15 @@ resid <- function (x,...) {
 #' @return Vector of residuals
 #'
 #'
+#'@export
+#'
 resid.linreg <- function(x,...) {
   as.vector(x[["Residuals"]])
 
 }
 
 #pred function
+
 pred <- function (x, ...) {
   UseMethod("pred", x)
 }
@@ -172,12 +187,24 @@ pred <- function (x, ...) {
 #' @param ...  optional parameter
 #'
 #' @return Vector of Fitted values
+#' @export
 #'
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
 }
 
 
+#' Generic coef function
+#'
+#' @name coef
+#'
+#' @param x as s3 object
+#'
+#' @param ...  optional parameter
+#'
+#' @return nothing
+#' @export
+#'
 coef <- function (x,...) {
   UseMethod("coef", x)
 }
@@ -190,6 +217,7 @@ coef <- function (x,...) {
 #'
 #'
 #' @return Named Vector of Coefficients
+#' @export
 #'
 coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
@@ -198,6 +226,18 @@ coef.linreg <- function(x,...) {
   cvec
 }
 
+
+#' Generic summary function
+#'
+#' @name summary
+#'
+#' @param x as object
+#'
+#' @param ...  optional parameter
+#'
+#' @return nothing
+#' @export
+#'
 summary <- function (x,...) {
   UseMethod("summary", x)
 }
@@ -210,6 +250,7 @@ summary <- function (x,...) {
 #' @param ...  optional parameter
 #'
 #' @return summary of linreg with formula, data, coefficient matrix and residual standard error
+#' @export
 #'
 summary.linreg <- function(x,...) {
 
