@@ -65,9 +65,6 @@ linreg <- function(formula, data ){
 
 }
 
-print <- function (x, ...) {
-  UseMethod("print", x)
-}
 #' Implementation of Print function using linreg , an alternative for lm.print.
 #' @name print.linreg
 #'
@@ -101,36 +98,42 @@ plot <- function (x,...) {
 #'
 #' @param ...  optional parameter
 #'
-#' @return Two plots  Residual vs Fitted  and  Scale-Location
+#' @return Prints the two plots to replicate plot.lm
 #'
 plot.linreg <- function(x,...){
-
-  residual_values <- x[["Residuals"]]
-  fitted_values <- x[["FittedValues"]]
-  plot_data <- data.frame(residual_values,fitted_values)
-  residualvariance <- x[["ResidualVarience"]]
-  formula <- x[["call"]][["formula"]]
-
-   p1 <-  ggplot(data=plot_data,
-         aes(x= fitted_values, y = residual_values)) +
-   xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
-   ylab("Residuals") + geom_point(shape=1, size=5) +ggtitle("Residuals vs Fitted")
-
-   plot1 <- p1+ stat_summary(fun.y = median, color = "red", geom = "line", size=1)
-
-  p2 <- ggplot(data = plot_data,
-  aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
-   geom_point(shape =1, size=5) +
-   ggtitle("Scale-Location") +
-   ylab(expression(sqrt(abs("Standardized Residuals")))) +
-   xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" ))
-
-  plot2 <- p2+ stat_summary(fun.y = mean, color = "red", geom = "line", size=1)
+  op <- par(ask=TRUE)
+  for (i in 1:2)
+  {
+    residual_values <- x[["Residuals"]]
+    fitted_values <- x[["FittedValues"]]
+    plot_data <- data.frame(residual_values,fitted_values)
+    residualvariance <- x[["ResidualVarience"]]
+    formula <- x[["call"]][["formula"]]
 
 
- return(grid.arrange(Residual_vs_Fitted = plot1,
-             Scale_Location = plot2, ncol =2 ))
+    if(i==1){
 
+      print(ggplot(data=plot_data,
+                   aes(x= fitted_values, y = residual_values)) +
+              xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" )) +
+              ylab("Residuals") + geom_point(shape=1, size=5) +ggtitle("Residuals vs Fitted")+
+              stat_summary(fun.y = median, color = "red", geom = "line", size=1))
+
+    }
+    if(i==2){
+
+      print(ggplot(data = plot_data,
+                   aes(x=fitted_values, y = sqrt(abs((residual_values - mean(residual_values)) /  as.vector(sqrt(residualvariance)))))) +
+              geom_point(shape =1, size=5) +
+              ggtitle("Scale-Location") +
+              ylab(expression(sqrt(abs("Standardized Residuals")))) +
+              xlab(paste("Fitted Values", "\n\t", "linreg(", formula[2], " ", formula[1], " ", formula[3],")" ))+
+              stat_summary(fun.y = mean, color = "red", geom = "line", size=1))
+
+    }
+    on.exit(par(op))
+    i<-i+1
+  }
 }
 
 
@@ -197,9 +200,7 @@ coef.linreg <- function(x,...) {
   cvec
 }
 
-summary <- function(x, ...){
-  UseMethod("summary", x)
-}
+
 #' Implementation of summary function using linreg , an alternative for lm.summary.
 #'
 #' @name summary.linreg
