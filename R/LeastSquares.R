@@ -65,6 +65,7 @@ linreg <- function(formula, data ){
 
 }
 
+
 #' Implementation of Print function using linreg , an alternative for lm.print.
 #' @name print.linreg
 #'
@@ -74,7 +75,6 @@ linreg <- function(formula, data ){
 #'
 #' @return Nothing
 #'
-#' @export print.linreg
 #'
 print.linreg <- function(x,...) {
 
@@ -90,7 +90,6 @@ print.linreg <- function(x,...) {
 plot <- function (x,...) {
   UseMethod("plot", x)
 }
-
 #' Implementation of plot function using linreg , an alternative for lm.plot.
 #'
 #' @name plot.linreg
@@ -101,7 +100,6 @@ plot <- function (x,...) {
 #'
 #' @return Prints the two plots to replicate plot.lm
 #'
-#' @export plot.linreg
 #'
 plot.linreg <- function(x,...){
   op <- par(ask=TRUE)
@@ -153,7 +151,6 @@ resid <- function (x,...) {
 #' @param ...  optional parameter
 #'
 #' @return Vector of residuals
-#' @export resid.linreg
 #'
 #'
 resid.linreg <- function(x,...) {
@@ -176,16 +173,14 @@ pred <- function (x, ...) {
 #'
 #' @return Vector of Fitted values
 #'
-#' @export pred.linreg
 pred.linreg <- function(x,...) {
   as.vector(x[["FittedValues"]])
 }
 
 
-coef <- function(x, ...){
-    UseMethod("coef", x)
+coef <- function (x,...) {
+  UseMethod("coef", x)
 }
-
 #' Implementation of coef function using linreg , an alternative for lm.coef.
 #'
 #' @name coef.linreg
@@ -196,7 +191,6 @@ coef <- function(x, ...){
 #'
 #' @return Named Vector of Coefficients
 #'
-#' @export coef.linreg
 coef.linreg <- function(x,...) {
   v <- as.data.frame(x[["Coefficients"]])
   cvec <- as.vector(x[["Coefficients"]])
@@ -204,7 +198,9 @@ coef.linreg <- function(x,...) {
   cvec
 }
 
-
+summary <- function (x,...) {
+  UseMethod("summary", x)
+}
 #' Implementation of summary function using linreg , an alternative for lm.summary.
 #'
 #' @name summary.linreg
@@ -215,7 +211,6 @@ coef.linreg <- function(x,...) {
 #'
 #' @return summary of linreg with formula, data, coefficient matrix and residual standard error
 #'
-#' @export summary.linreg
 summary.linreg <- function(x,...) {
 
   coef_matrix <- data.frame(
