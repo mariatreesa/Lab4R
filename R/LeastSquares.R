@@ -9,7 +9,7 @@
 #'
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
-#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggplot aes xlab ylab ggtitle stat_summary
 
 
 # the linreg function
@@ -150,7 +150,17 @@ plot.linreg <- function(x,...){
 }
 
 
-
+#' Generic resid function
+#'
+#' @name resid
+#'
+#' @param x as s3 object
+#'
+#' @param ...  optional parameter
+#'
+#' @return nothing
+#' @export
+#'
 resid <- function (x,...) {
   UseMethod("resid", x)
 }
@@ -172,8 +182,18 @@ resid.linreg <- function(x,...) {
 
 }
 
-#pred function
 
+#' Generic pred function
+#'
+#' @name pred
+#'
+#' @param x as s3 object
+#'
+#' @param ...  optional parameter
+#'
+#' @return nothing
+#' @export
+#'
 pred <- function (x, ...) {
   UseMethod("pred", x)
 }
