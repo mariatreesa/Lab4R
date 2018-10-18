@@ -9,7 +9,7 @@
 #'
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
-#' @importFrom ggplot2 ggplot aes xlab ylab ggtitle stat_summary
+#' @importFrom ggplot2 ggplot aes xlab ylab ggtitle stat_summary geom_point
 
 
 # the linreg function
