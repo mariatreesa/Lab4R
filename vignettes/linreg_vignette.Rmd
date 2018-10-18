@@ -10,7 +10,7 @@ vignette: >
 ---
 
 
-```{r}
+```{r include=FALSE}
 library(Rlab4)
 library(ggplot2)
 ```

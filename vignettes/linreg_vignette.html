@@ -74,19 +74,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rlab4)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'Rlab4'</code></pre>
-<pre><code>## The following object is masked from 'package:stats':
-## 
-##     coef</code></pre>
-<pre><code>## The following object is masked from 'package:graphics':
-## 
-##     plot</code></pre>
-<pre><code>## The following object is masked from 'package:base':
-## 
-##     summary</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>This package was developed as part of a LAB assignment at Linkoping Universtiy. The package fits a Linear Regression Model using Ordinary Least Squares and QR decompostion method. So far, only former gives t-values and p-values while the latter gives estimates of beta and residuals and variances of the beta estimates. The functions: - linreg: Linear Regression function by OLS - linreg_QR: Linear Regression function by QR decomposition.</p>
@@ -104,13 +91,13 @@ model_obj &lt;-<span class="st"> </span><span class="kw">linreg</span>(eruptions
 ## 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value      Pr(&gt;|t|)    
-## (Intercept)    -1.87       0.16  -11.70  7.359171e-26 ***
-## waiting         0.08       0.00   34.09 8.129959e-100 ***
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.87402    0.16014  -11.70   &lt;2e-16 ***
+## waiting      0.07563    0.00222   34.09   &lt;2e-16 ***
+## ---
+## Signif . codes  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.5 on 270 degrees of freedom
-## 
-## Signif . codes  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+## Residual standard error: 0.5 on 270 degrees of freedom</code></pre>
 </div>
 
 
