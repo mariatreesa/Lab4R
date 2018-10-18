@@ -275,12 +275,12 @@ summary <- function (x,...) {
 summary.linreg <- function(x,...) {
 
   coef_matrix <- data.frame(
-    estimate = round(x[["Coefficients"]], 2),
+    estimate = round(x[["Coefficients"]], 5),
     std.error = round(sqrt(diag(
       x[["VarianceOfRegCoeff"]]
-    )), 2),
+    )), 5),
     t_value = round(x[["tvalues"]], 2),
-    p_value = x[["pvalues"]],
+    p_value = ifelse((x[["pvalues"]]<2e-16),"<2e-16",x[["pvalues"]]),
     signi <- as.vector(x[["signi"]])
   )
   colnames(coef_matrix) <- c("Estimate", "Std. Error", "t value", "Pr(>|t|)","")
@@ -302,6 +302,14 @@ summary.linreg <- function(x,...) {
   cat("Coefficients:")
   cat(sep = "\n")
   print(coef_matrix)
+  cat("---")
+
+
+  #---- significant codes
+
+  cat(sep = "\n")
+  cat("Signif . codes ", attributes(x$signi)$"legend")
+  cat(sep = "\n")
 
   #--- degree of freedon
 
@@ -309,11 +317,6 @@ summary.linreg <- function(x,...) {
   cat("Residual standard error:", round(sqrt(x[["ResidualVarience"]]), 2), "on", x[["DegreeofFreedon"]], "degrees of freedom")
   cat(sep = "\n")
 
-  #---- significant codes
-
-  cat(sep = "\n")
-  cat("Signif . codes ", attributes(x$signi)$"legend")
-  cat(sep = "\n")
 }
 
 
