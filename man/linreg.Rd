@@ -21,5 +21,4 @@ Authors: Maria Treesa Sebastian(marse306), Brian Masinde(brima748), Omkar(omkbh8
 }
 \examples{
 linreg(formula = Petal.Length ~ Species, data = iris)
-
 }

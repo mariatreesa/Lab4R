@@ -9,7 +9,7 @@
 #'
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
-#'
+#' @importFrom ggplot2 ggplot
 
 
 # the linreg function
@@ -49,8 +49,8 @@ linreg <- function(formula, data ){
 
   # calculate significant codes for p values
   signi <- symnum(pvalues, corr = FALSE, na = FALSE,
-                   cutpoints = c(0,0.001, 0.01, 0.05, 0.1, 1),
-                   symbols = c("***", "**", "*", ".", " "))
+                  cutpoints = c(0,0.001, 0.01, 0.05, 0.1, 1),
+                  symbols = c("***", "**", "*", ".", " "))
 
 
   # creating object
@@ -81,8 +81,8 @@ print.linreg <- function(x,...) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
   regcoeff <- t(x[["Coefficients"]])
-    cat("Coefficients:\n")
-    print(format(regcoeff[1,]), quote = FALSE)
+  cat("Coefficients:\n")
+  print(format(regcoeff[1,]), quote = FALSE)
   cat("\n")
 
 }
@@ -111,7 +111,7 @@ plot <- function (x,...) {
 #'
 #' @return Prints the two plots to replicate plot.lm
 #'
-#'@export
+#' @export
 #'
 plot.linreg <- function(x,...){
   op <- par(ask=TRUE)
@@ -165,7 +165,7 @@ resid <- function (x,...) {
 #' @return Vector of residuals
 #'
 #'
-#'@export
+#' @export
 #'
 resid.linreg <- function(x,...) {
   as.vector(x[["Residuals"]])
